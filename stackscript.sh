@@ -42,7 +42,7 @@ case "$1" in
                                 systemctl stop $i ;
                         fi
                 done
-                echo -e "\nStarting Neutron Services..\n"
+                echo -e "\nStopping Neutron Services..\n"
                 for i in `systemctl list-unit-files --type=service | grep -i neutron | grep -i enabled | awk '{print $1}'`;
                         do
                         status=$(systemctl status $i | awk 'FNR == 3 {print $2}' 2>&1)
