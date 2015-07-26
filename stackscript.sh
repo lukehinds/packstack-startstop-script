@@ -36,7 +36,7 @@ case "$1" in
                 echo -e "\nStopping Openstack Services..\n"
                 for i in `systemctl list-unit-files --type=service | grep -i openstack | grep -i enabled | awk '{print $1}'`;
                         do
-                        status=$(systemctl status $i | awk 'FNR == 3 {print $2}' 2>&1)
+                        status=$(systemctl stop $i | awk 'FNR == 3 {print $2}' 2>&1)
                         if [ "$status" = "active" ]; then
                                 echo "Stopping:" $i
                                 systemctl stop $i ;
@@ -45,7 +45,7 @@ case "$1" in
                 echo -e "\nStopping Neutron Services..\n"
                 for i in `systemctl list-unit-files --type=service | grep -i neutron | grep -i enabled | awk '{print $1}'`;
                         do
-                        status=$(systemctl status $i | awk 'FNR == 3 {print $2}' 2>&1)
+                        status=$(systemctl stop $i | awk 'FNR == 3 {print $2}' 2>&1)
                         if [ "$status" = "active" ]; then
                                 echo "Stopping:" $i
                                 systemctl stop $i ;
